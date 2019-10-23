@@ -10,7 +10,7 @@ interface ILangSelectorProps {
     onSelect: (from: string, to: string) => void;
 }
 
-const languageList = [
+export const languageList = [
     {
         name: 'English',
         value: 'en',
