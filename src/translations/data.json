@@ -405,19 +405,19 @@
     "bg": "Използван речников запас от:"
   },
   "aboutAuthors": {
-    "en": "Original dictionary created by Jan van Steenbergen. Translations maintained by: Polish – Michał Swat, Czech – Zdeněk Kučera, Russian – Denis Shabalin, Macedonian – Toni Stojcevski and others. Work continues.",
-    "isv": "Tvoritelj originalnogo slovnika jest Jan van Steenbergen. Prěvody izpolnili: poljsky jezyk – Mihal Svat, češsky – Zdeněk Kučera, russky – Denis Šabalin, makedonsky – Toni Stojcevsky i ini. Rabota trvaje.",
-    "ru": "Создатель оригинального словаря – Ян ван Стенберген. Переводы выполнили: польский язык – Михал Сват, чешский – Зденек Кучера, русский – Денис Шабалин, македонский – Тони Стойцевски и другие. Работа продолжается.",
-    "uk": "Творець оригінального словника – Ян ван Стенберген. Переклади виконали: польська мова – Міхал Сват, чеська – Зденек Кучера, російська – Деніс Шабалін, македонська – Тоні Стойцевскі і інші. Робота триває.",
-    "be": "Стваральнік арыгінальнага слоўніка – Ян ван Стенберген. Пераклады выканалі: польская мова – Міхал Сват, чэшская – Здэнек Кучэра, руская – Дзяніс Шабалін, македонская – Тоні Стойцевскі і іншыя. Праца ідзе.",
-    "pl": "Twórcą oryginalnego słownika jest Jan van Steenbergen. Wykonano tłumaczenia: polski – Michał Swat, czeski – Zdeněk Kučera, rosyjski – Denis Szabalin, macedoński – Toni Stojcevski i inni. Prace trwają.",
-    "cs": "Tvůrce původního slovníku je Jan van Steenbergen. Překlady provedené: polština – Michał Swat, čeština – Zdeněk Kučera, ruština – Denis Šabalin, makedonština – Toni Stojcevski a další. Práce pokračuje.",
-    "sk": "Tvorca pôvodného slovníka je Ján van Steenbergen. Preklady vyhotovili: poľština – Michał Swat, čeština – Zdeněk Kučera, ruština – Denis Šabalin, makedonština – Toni Stojcevski a ďalší. Práca pokračuje.",
-    "sl": "Ustvarjalec izvirnega slovarja je Jan van Steenbergen. Prevode so naredili: poljščina – Michał Swat, češčina – Zdeněk Kučera, ruščina – Denis Šabalin, makedonščina – Toni Stojcevski in drugi. Delo se nadaljuje.",
-    "hr": "Izvorni rječnik sastavio Jan van Steenbergen. Prijevode održavaju: poljski jezik – Michał Swat, češki – Zdeněk Kučera, ruski – Denis Šabalin, makedonski – Toni Stojcevski i drugi. Rad se nastavlja.",
-    "sr": "Изворни речник саставио Јан ван Стенберген. Преводе одржавају: пољски језик – Михал Сват, чешки – Зденек Кучера, руски – Денис Шабалин, македонски – Тони Стојцевски и други. Рад се наставља.",
-    "mk": "Креатор на оригиналниот речник е Јан ван Стеенберген. Преводите беа направени од: полски јазик – Михал Сват, чешки – Зденек Кучера, руски – Денис Шабалин, македонски – Тони Стојцевски и други. Работата продолжува.",
-    "bg": "Създателят на оригиналния речник е Ян ван Стеенберген. Преводите са направени от: полски език – Михал Сват, чешки – Зденек Кучера, руски – Денис Шабалин, македонски – Тони Стойцевски и др. Работата продължава."
+    "en": "Original dictionary created by Jan van Steenbergen. Translations maintained by: Polish – Michał Swat, Czech – Zdeněk Kučera, Russian – Denis Shabalin, Macedonian – Toni Stojčevski and others. Work continues.",
+    "isv": "Tvoritelj originalnogo slovnika jest Jan van Steenbergen. Prěvody izpolnili: poljsky jezyk – Mihal Svat, češsky – Zdeněk Kučera, russky – Denis Šabalin, makedonsky – Toni Stojčevski i ini. Rabota trvaje.",
+    "ru": "Создатель оригинального словаря – Ян ван Стенберген. Переводы выполнили: польский язык – Михал Сват, чешский – Зденек Кучера, русский – Денис Шабалин, македонский – Тони Стойчевски и другие. Работа продолжается.",
+    "uk": "Творець оригінального словника – Ян ван Стенберген. Переклади виконали: польська мова – Міхал Сват, чеська – Зденек Кучера, російська – Деніс Шабалін, македонська – Тоні Стойчевскі і інші. Робота триває.",
+    "be": "Стваральнік арыгінальнага слоўніка – Ян ван Стенберген. Пераклады выканалі: польская мова – Міхал Сват, чэшская – Здэнек Кучэра, руская – Дзяніс Шабалін, македонская – Тоні Стойчэвскі і іншыя. Праца ідзе.",
+    "pl": "Twórcą oryginalnego słownika jest Jan van Steenbergen. Wykonano tłumaczenia: polski – Michał Swat, czeski – Zdeněk Kučera, rosyjski – Denis Szabalin, macedoński – Toni Stojčevski i inni. Prace trwają.",
+    "cs": "Tvůrce původního slovníku je Jan van Steenbergen. Překlady provedené: polština – Michał Swat, čeština – Zdeněk Kučera, ruština – Denis Šabalin, makedonština – Toni Stojčevski a další. Práce pokračuje.",
+    "sk": "Tvorca pôvodného slovníka je Ján van Steenbergen. Preklady vyhotovili: poľština – Michał Swat, čeština – Zdeněk Kučera, ruština – Denis Šabalin, makedonština – Toni Stojčevski a ďalší. Práca pokračuje.",
+    "sl": "Ustvarjalec izvirnega slovarja je Jan van Steenbergen. Prevode so naredili: poljščina – Michał Swat, češčina – Zdeněk Kučera, ruščina – Denis Šabalin, makedonščina – Toni Stojčevski in drugi. Delo se nadaljuje.",
+    "hr": "Izvorni rječnik sastavio Jan van Steenbergen. Prijevode održavaju: poljski jezik – Michał Swat, češki – Zdeněk Kučera, ruski – Denis Šabalin, makedonski – Toni Stojčevski i drugi. Rad se nastavlja.",
+    "sr": "Изворни речник саставио Јан ван Стенберген. Преводе одржавају: пољски језик – Михал Сват, чешки – Зденек Кучера, руски – Денис Шабалин, македонски – Тони Стојчевски и други. Рад се наставља.",
+    "mk": "Креатор на оригиналниот речник е Јан ван Стеенберген. Преводите беа направени од: полски јазик – Михал Сват, чешки – Зденек Кучера, руски – Денис Шабалин, македонски – Тони Стојчевски и други. Работата продолжува.",
+    "bg": "Създателят на оригиналния речник е Ян ван Стеенберген. Преводите са направени от: полски език – Михал Сват, чешки – Зденек Кучера, руски – Денис Шабалин, македонски – Тони Стойчевски и др. Работата продължава."
   },
   "notVerifiedText": {
     "en": "Search results contain inaccurate automatic translations. Currently, part% of the words of the selected language are verified. If you speak this language, join the work on improving translations!",
