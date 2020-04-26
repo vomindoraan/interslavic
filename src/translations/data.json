@@ -196,7 +196,7 @@
   },
   "searchTypeBegin": {
     "en": "Begin",
-    "isv": "Počatok",
+    "isv": "Početok",
     "ru": "Начало",
     "uk": "Початок",
     "be": "Пачаток",
@@ -1381,7 +1381,7 @@
   },
   "degreesOfComparison": {
     "en": "Degrees of comparison",
-    "isv": "Stupnje sravnenja",
+    "isv": "Stupnje sravnjenja",
     "ru":  "Степени сравнения",
     "uk": "",
     "be": "",
