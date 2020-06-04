@@ -1,39 +1,50 @@
-.isv label {
+@import "src/index";
+
+.lang-selector {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  padding: 0.375rem 0.75rem;
-  margin-bottom: 0;
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.5;
-  color: #495057;
-  //text-align: center;
-  white-space: nowrap;
-  //background-color: #e9ecef;
-  border: 1px solid #ced4da;
-  //border-radius: 0.25rem;
 
-
-  text-align: start;
-  width: 100%;
-  background: #fff;
-  border-radius: .25rem !important;
-}
-
-.isv, .another {
-  width: 40%;
-}
-.langItem {
-  display: inline-block;
-}
-.changeDir {
-  width: 20%;
-  text-align: center;
-  button {
-    font-weight: bold;
-    text-decoration: none;
+  option, select {
+    text-transform: capitalize;
   }
-}
-.langSelect {
-  padding: 15px 15px 0 15px;
+
+  &__isv {
+    text-transform: capitalize;
+    font-size: var(--text-m);
+    line-height: var(--text-l-line);
+    box-sizing: border-box;
+    padding: 4px 6px;
+    border: var(--border);
+    border-radius: var(--border-radius-s);
+    outline: none;
+    min-width: 40%;
+    flex: 0 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__another {
+    flex: 0 1;
+    min-width: 40%;
+
+    .selector__select {
+      padding: 6px;
+    }
+  }
+
+  &__change-dir-button {
+    background: none;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    transition: transform var(--animation-duration) ease-in-out;
+
+    &.rotate {
+      transform: rotate(180deg);
+    }
+  }
 }

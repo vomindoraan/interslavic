@@ -1,11 +1,11 @@
 import { dictionaryUrl } from 'consts';
 import * as fs from 'fs';
 import request from 'request';
-import { conjugationVerb } from 'utils/legacy/conjugationVerb';
-import { declensionAdjective } from 'utils/legacy/declensionAdjective';
-import { declensionNoun, declensionNounFlat } from 'utils/legacy/declensionNoun';
-import { declensionNumeral } from 'utils/legacy/declensionNumeral';
-import { declensionPronoun } from 'utils/legacy/declensionPronoun';
+import { conjugationVerb } from 'legacy/conjugationVerb';
+import { declensionAdjective } from 'legacy/declensionAdjective';
+import { declensionNoun, declensionNounFlat } from 'legacy/declensionNoun';
+import { declensionNumeral } from 'legacy/declensionNumeral';
+import { declensionPronoun } from 'legacy/declensionPronoun';
 import {
     getGender, getNumeralType,
     getPartOfSpeech, getPronounType,
@@ -24,7 +24,7 @@ const testCases = {
 request(dictionaryUrl, (err, data) => {
     const splittedBody = data.body.replace(/#/g, '').split('\n').filter(Boolean).slice(1);
     splittedBody.forEach((line, i) => {
-        const [ wordOrig, add, detailsOrig ] = line.split('\t').slice(0, 3);
+        const [ wordOrig, add, detailsOrig ] = line.split('\t').slice(1, 4);
         const words = wordOrig.split(',').map((e) => e.trim());
         let details = detailsOrig;
         words.forEach((word) => {

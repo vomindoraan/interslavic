@@ -1,14 +1,10 @@
 import { posFilterAction } from 'actions';
 import { Selector } from 'components/Selector';
-import { connect } from 'connect';
 import * as React from 'react';
 import { t } from 'translations';
 import './index.scss';
-
-interface IPOSSelectorProps {
-    posFilter: string;
-    changePosFilter: (pos: string) => void;
-}
+import { usePosFilter } from 'hooks/usePosFilter';
+import { useDispatch } from 'react-redux';
 
 const POSList = [
     {
@@ -51,37 +47,27 @@ const POSList = [
         name: 'interjection',
         value: 'intj',
     },
-
 ];
 
-class POSSelector extends React.Component<IPOSSelectorProps> {
-    public render() {
+export const POSSelector: React.FC =
+    () => {
+        const dispatch = useDispatch();
+        const posFilter = usePosFilter();
+        const options = POSList.map(({name, value}) => ({
+            name: t(name),
+            value,
+        }));
+        const onSelect = React.useCallback((pos) => {
+            dispatch(posFilterAction(pos));
+        }, [dispatch]);
+
         return (
-            <div className={'posSelector'}>
-                <Selector
-                    options={POSList.map(({name, value}) => ({
-                        name: t(name),
-                        value,
-                    }))}
-                    onSelect={(pos) => this.props.changePosFilter(pos)}
-                    value={this.props.posFilter}
-                    label={t('partOfSpeech')}
-                />
-            </div>
+            <Selector
+                className={'pos-selector'}
+                options={options}
+                onSelect={onSelect}
+                value={posFilter}
+                label={t('partOfSpeech')}
+            />
         );
-    }
-}
-
-function mapStateToProps({posFilter}) {
-    return {
-        posFilter,
     };
-}
-
-function mapDispatchToProps(dispatch) {
-    return {
-        changePosFilter: (pos) => dispatch(posFilterAction(pos)),
-    };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(POSSelector);

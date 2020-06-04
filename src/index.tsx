@@ -6,53 +6,35 @@ import { applyMiddleware, compose, createStore } from 'redux';
 import { setInitialPage } from 'routing';
 import { getPageFromPath } from 'routing';
 import { setLang } from 'translations';
-import Main from './components/Main';
-import './customBootstrap.scss';
-import { Dictionary } from './utils/dictionary';
+import { Main } from 'components/Main';
+import './index.scss';
+import { Dictionary } from 'services/dictionary';
+import { analyticsMiddleware } from 'middlewares/analyticsMiddleware';
+import { localStorageMiddleware } from 'middlewares/localStorageMiddleware';
 
 /* tslint:disable */
 declare global {
     const HASH_ID: string;
-    const DATE: string;
+    const VERSION: string;
     const BASE_URL: string;
-    const ym: (id: number, type: string, params: any) => void;
+    const SW: boolean;
     interface Window {
-        HASH_ID: string;
-        dataLayer: any[];
         __REDUX_DEVTOOLS_EXTENSION__: any;
     }
 }
 
-if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register(`./sw.${HASH_ID}.js`)
-        .then((registration) => {
-            console.log('Registration successful, scope is:', registration.scope);
-        })
-        .catch((error) => {
-            console.log('Service worker registration failed, error:', error);
-        });
-}
-
 setInitialPage();
 
-if (process.env.NODE_ENV === 'production') {
-    (function (m, e, t, r, i, k, a) {
-        m[i] = m[i] || function () {
-            (m[i].a = m[i].a || []).push(arguments)
-        };
-        m[i].l = new Date().getTime();
-        k = e.createElement(t);
-        a = e.getElementsByTagName(t)[0];
-        k.async = true;
-        k.src = r;
-        a.parentNode.insertBefore(k, a);
-    })
-    (window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js', 'ym');
-    ym(55692481, 'init', {
-        clickmap: true,
-        trackLinks: true,
-        accurateTrackBounce: true,
-    });
+if (SW) {
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register(`sw.${HASH_ID}.js`)
+            .then((registration) => {
+                console.log('Registration successful, scope is:', registration.scope);
+            })
+            .catch((error) => {
+                console.log('Service worker registration failed, error:', error);
+            });
+    }
 }
 
 export const defaultState: IMainState = {
@@ -65,6 +47,7 @@ export const defaultState: IMainState = {
         from: [],
         to: [],
     },
+    isvSearchByWordForms: true,
     fromText: '',
     searchType: 'begin',
     posFilter: '',
@@ -72,7 +55,11 @@ export const defaultState: IMainState = {
     alphabetType: 'latin',
     page: 'dictionary',
     isLoading: true,
-    isDetailModal: false,
+    loadingProgress: 0,
+    modalDialog: {
+        type: null,
+        index: null,
+    },
     searchExpanded: false,
     rawResults: [],
     results: [],
@@ -81,6 +68,7 @@ export const defaultState: IMainState = {
         cyrillic: true,
         glagolitic: false,
     },
+    favoriteList: {},
 };
 
 function reduxDevTools() {
@@ -91,27 +79,18 @@ function reduxDevTools() {
     }
 }
 
-function localStorageMiddleware({getState}) {
-    return (next) => (action) => {
-        const result = next(action);
-        if (action.type === 'IS_LOADING') {
-            return result;
-        }
-        const stateForSave = {
-            ...getState(),
-        };
-        delete stateForSave.rawResults;
-        delete stateForSave.results;
-        delete stateForSave.isLoading;
-        localStorage.setItem('reduxState', JSON.stringify(stateForSave));
-        return result;
-    };
-}
-
 function getInitialState(): IMainState {
     let state = defaultState;
     try {
         const savedState = JSON.parse(localStorage.getItem('reduxState')) || {};
+
+        if (savedState.lang.from !== 'isv' && savedState.lang.to !== 'isv') {
+            savedState.lang = {
+                from: 'en',
+                to: 'isv',
+            };
+        }
+
         state = {
             ...defaultState,
             page: getPageFromPath(),
@@ -121,6 +100,7 @@ function getInitialState(): IMainState {
 
     setLang(state.interfaceLang);
     Dictionary.setIsvSearchLetters(state.isvSearchLetters);
+    Dictionary.setIsvSearchByWordForms(state.isvSearchByWordForms);
 
     return state;
 }
@@ -131,6 +111,7 @@ const store = createStore(
     compose(
         applyMiddleware(
             localStorageMiddleware,
+            analyticsMiddleware,
         ),
         reduxDevTools(),
     ),

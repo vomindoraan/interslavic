@@ -1,9 +1,6 @@
 <h1>
-  <img src="static/logo.png" alt="Logo" height="32" width="48">
+  <img src="src/components/Header/images/logo-icon.svg" alt="Logo" height="32" width="48">
   Interslavic language dictionary
-  <a href="https://travis-ci.org/scherebedov/interslavic" title="Build Status on Travis CI">
-    <img src="https://travis-ci.org/scherebedov/interslavic.svg?branch=master" alt="Build Status">
-  </a>
   <a href='https://coveralls.io/github/scherebedov/interslavic?branch=master'><img src='https://coveralls.io/repos/github/scherebedov/interslavic/badge.svg?branch=master' alt='Coverage Status' /></a>
 </h1>
 
@@ -17,6 +14,4 @@ Recommended to use and install as PWA (Progressive Web App):
 ## Acknowledgements
 
 Using dictionary from: [http://steen.free.fr/interslavic/dynamic_dictionary.html](http://steen.free.fr/interslavic/dynamic_dictionary.html)  
-
-
 

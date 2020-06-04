@@ -1,18 +1,18 @@
-import { hideDetailAction, setAlphabetTypeAction } from 'actions';
+import { hideModalDialog, setAlphabetTypeAction } from 'actions';
 import { LineSelector } from 'components/LineSelector';
 import Table from 'components/Table';
 import Text from 'components/Text';
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { t } from 'translations';
-import { Dictionary } from 'utils/dictionary';
+import { Dictionary } from 'services/dictionary';
 import { getCyrillic } from 'utils/getCyrillic';
 import { getLatin } from 'utils/getLatin';
-import { conjugationVerb } from 'utils/legacy/conjugationVerb';
-import { declensionAdjective } from 'utils/legacy/declensionAdjective';
-import { declensionNoun } from 'utils/legacy/declensionNoun';
-import { declensionNumeral } from 'utils/legacy/declensionNumeral';
-import { declensionPronoun } from 'utils/legacy/declensionPronoun';
+import { conjugationVerb } from 'legacy/conjugationVerb';
+import { declensionAdjective } from 'legacy/declensionAdjective';
+import { declensionNoun } from 'legacy/declensionNoun';
+import { declensionNumeral } from 'legacy/declensionNumeral';
+import { declensionPronoun } from 'legacy/declensionPronoun';
 import {
     getGender,
     getNumeralType,
@@ -24,106 +24,76 @@ import {
     isPlural,
     isSingular,
 } from 'utils/wordDetails';
-import ModalDialog from '../ModalDialog';
 import './index.scss';
 import { getGlagolitic } from 'utils/getGlagolitic';
+import { alphabetTypes } from 'consts';
+import { IMainState } from 'reducers';
 
-interface IDetailModalProps {
+interface IDetailModalInternal {
     close: () => void;
     item: any;
     alphabetType: string;
     alphabets: any;
-    isDetailModal: boolean;
     flavorisationType: string;
+    interfaceLang: string;
     setAlphabetType: (type: string) => void;
-    rawItem: string[];
 }
 
-const alphabetType = [
-    {
-        name: 'latin',
-        value: 'latin',
-    },
-    {
-        name: 'cyrillic',
-        value: 'cyrillic',
-    },
-    {
-        name: 'glagolitic',
-        value: 'glagolitic',
-    },
-];
-
-class DetailModal extends React.Component<IDetailModalProps> {
-    private closeButtonRef = React.createRef<HTMLButtonElement>();
-
+class DetailModalInternal extends React.Component<IDetailModalInternal> {
     public render() {
-        const contents = this.renderContents();
-
-        return (
-            <ModalDialog
-                className={'customModal'}
-                wrapperClassName={'modal-content customModalContent'}
-                open={!!contents}
-                onOpen={this.onDialogOpened}
-                onClose={this.close}
-            >
-                {contents}
-            </ModalDialog>
-        );
-    }
-
-    private renderContents() {
-        if (!this.props.item || !this.props.isDetailModal) {
-            return;
+        if (!this.props.item) {
+            return null;
         }
 
         const pos = getPartOfSpeech(this.props.item.details);
 
         return (
             <>
-                <header className={'modal-header'}>
+                <div className={'modal-dialog__header'}>
                     {this.renderTitle(pos)}
                     <button
-                        ref={this.closeButtonRef}
-                        className={'close'}
-                        onClick={this.close}
+                        className={'modal-dialog__header-close'}
+                        onClick={this.props.close}
                         aria-label={'Close'}
                     >
-                        <span aria-hidden={'true'}>&times;</span>
+                        &times;
                     </button>
-                </header>
-                <div className={'modal-body'}>
+                </div>
+                <div className={'modal-dialog__body'}>
                     {this.renderBody()}
                 </div>
-                <footer className={'modal-footer'}>
-                    <LineSelector
-                        options={alphabetType.filter(({value}) => this.props.alphabets[value]).map((item) => ({
-                            name: t(item.name),
-                            value: item.value,
-                        }))}
-                        value={this.props.alphabetType}
-                        onSelect={(type) => this.props.setAlphabetType(type)}
-                    />
-                </footer>
+                {this.renderFooter()}
             </>
         );
     }
 
-    private onDialogOpened = () => {
-        const closeButton = this.closeButtonRef.current;
-        if (closeButton) {
-            closeButton.blur();
-        }
-    }
+    private renderFooter() {
+        const options = alphabetTypes
+            .filter(({value}) => this.props.alphabets[value])
+            .map((item) => ({
+                    name: t(item.name),
+                    value: item.value,
+                }),
+            );
 
-    private close = () => {
-        this.props.close();
+        if (options.length === 1) {
+            return null;
+        }
+
+        return (
+            <footer className={'modal-dialog__footer'}>
+                <LineSelector
+                    options={options}
+                    value={this.props.alphabetType}
+                    onSelect={(type) => this.props.setAlphabetType(type)}
+                />
+            </footer>
+        );
     }
 
     private renderTitle(pos: string) {
-        const word = this.props.rawItem[0];
-        const add = this.props.rawItem[1];
+        const word = Dictionary.getField(this.props.item.raw, 'isv');
+        const add = Dictionary.getField(this.props.item.raw, 'addition');
         const { details } = this.props.item;
         const arr = [t(pos)];
         const animated = isAnimated(details);
@@ -159,19 +129,22 @@ class DetailModal extends React.Component<IDetailModalProps> {
                 }
         }
         return (
-            <h5 className={'modal-title'}>
-                {this.formatStr(word)} {this.formatStr(add)} <i>({arr.join(', ')})</i>
-            </h5>
+            <span className={'modal-dialog__header-title'}>
+                {this.formatStr(word)} {this.formatStr(add)} <span className={'details'}>({arr.join(', ')})</span>
+            </span>
         );
     }
 
     private renderBody() {
-        const splitted = this.props.rawItem[0].split(',');
-        if (splitted.length === 1 && this.props.rawItem[2].indexOf('m./f.') !== -1 ) {
+        const fieldIsv = Dictionary.getField(this.props.item.raw, 'isv');
+        const fieldAddition = Dictionary.getField(this.props.item.raw, 'addition');
+        const fieldPartOfSpeech = Dictionary.getField(this.props.item.raw, 'partOfSpeech');
+        const splitted = fieldIsv.split(',');
+        if (splitted.length === 1 && fieldPartOfSpeech.indexOf('m./f.') !== -1 ) {
             return [
-                this.renderWord([this.props.rawItem[0].trim(), this.props.rawItem[1], 'm.'],
+                this.renderWord([fieldIsv, fieldAddition, 'm.'],
                     ['showTitle', 'showGender', 'oneMore'], 0),
-                this.renderWord([this.props.rawItem[0].trim(), this.props.rawItem[1], 'f.'],
+                this.renderWord([fieldIsv, fieldAddition, 'f.'],
                     ['showTitle', 'showGender'], 1),
             ];
         }
@@ -181,7 +154,7 @@ class DetailModal extends React.Component<IDetailModalProps> {
                 options.push('showTitle');
                 if (i < splitted.length - 1) { options.push('oneMore'); }
             }
-            return this.renderWord([word.trim(), this.props.rawItem[1],  this.props.rawItem[2]], options, i);
+            return this.renderWord([word.trim(), fieldAddition,  fieldPartOfSpeech], options, i);
         });
     }
 
@@ -192,7 +165,7 @@ class DetailModal extends React.Component<IDetailModalProps> {
         switch (getPartOfSpeech(details)) {
             case 'noun':
                 if (options.includes('showGender')) {
-                    remark = (details === 'm.' ? ' (' + t('nounMasculine') + ')' : ' (' + t('nounFeminine') + ')');
+                    remark = (details === 'm.' ? ' (' + t('noun-masculine') + ')' : ' (' + t('noun-feminine') + ')');
                 }
                 wordComponent = this.renderNounDetails(word, add, details);
                 break;
@@ -344,8 +317,8 @@ class DetailModal extends React.Component<IDetailModalProps> {
 
         const tableData =
             [...tableData1,
-             ['@w=2;bb;bl;br', '@w=3;bl;br'],
-            ...tableData2];
+                ['@w=2;bb;bl;br', '@w=3;bl;br'],
+                ...tableData2];
 
         const tableDataAdd = [
             [
@@ -442,8 +415,8 @@ class DetailModal extends React.Component<IDetailModalProps> {
         }
 
         const tableDataCases = this.getSimpleCasesTable({
-           columns: ['singular', 'plural'],
-           cases,
+            columns: ['singular', 'plural'],
+            cases,
         });
 
         return <Table data={tableDataCases}/>;
@@ -649,20 +622,19 @@ class DetailModal extends React.Component<IDetailModalProps> {
 
 function mapDispatchToProps(dispatch) {
     return {
-        close: () => dispatch(hideDetailAction()),
+        close: () => dispatch(hideModalDialog()),
         setAlphabetType: (type) => dispatch(setAlphabetTypeAction(type)),
     };
 }
 
-function mapStateToProps({detailModal, isDetailModal, results, rawResults, alphabetType, flavorisationType, alphabets}) {
+function mapStateToProps({modalDialog, results, alphabetType, flavorisationType, alphabets, interfaceLang}: IMainState) {
     return {
-        item: results[detailModal],
-        rawItem: rawResults[detailModal],
+        item: results[modalDialog.index],
         alphabetType,
         alphabets,
-        isDetailModal,
         flavorisationType,
+        interfaceLang,
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(DetailModal);
+export const DetailModal = connect(mapStateToProps, mapDispatchToProps)(DetailModalInternal);

@@ -12,7 +12,14 @@
     "baseUrl": "./src",
     "resolveJsonModule": true,
     "esModuleInterop": true,
-    "paths": {}
+    "paths": {},
+    "typeRoots": ["./custom.d.ts", "node_modules/@types"],
+    "lib": [
+      "dom",
+      "es5",
+      "scripthost",
+      "es2015.collection"
+    ]
   },
   "exclude": [
     "node_modules",

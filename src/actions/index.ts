@@ -1,4 +1,4 @@
-import { IMainState } from 'reducers';
+import { IModalDialog } from 'reducers';
 
 export enum ActionTypes {
     LANG = 'LANG',
@@ -8,14 +8,19 @@ export enum ActionTypes {
     SET_PAGE = 'SET_PAGE',
     SET_INTERFACE_LANG = 'SET_INTERFACE_LANG',
     IS_LOADING = 'IS_LOADING',
-    SET_DETAIL = 'SET_DETAIL',
-    DETAIL_IS_VISIBLE = 'DETAIL_IS_VISIBLE',
+    LOADING_PROGRESS = 'LOADING_PROGRESS',
     SET_SEARCH_EXPAND = 'SET_SEARCH_EXPAND',
     ALPHABET_TYPE = 'ALPHABET_TYPE',
     RUN_SEARCH = 'RUN_SEARCH',
     CHANGE_ISV_SEARCH_LETTERS = 'CHANGE_ISV_SEARCH_LETTERS',
+    CHANGE_ISV_SEARCH_BY_WORDFORMS = 'CHANGE_ISV_SEARCH_BY_WORDFORMS',
     POS_FILTER = 'POS_FILTER',
     SET_ALPHABETS = 'SET_ALPHABETS',
+    SHOW_MODAL_DIALOG = 'SHOW_MODAL_DIALOG',
+    HIDE_MODAL_DIALOG = 'HIDE_MODAL_DIALOG',
+    SET_FAVORITE = 'SET_FAVORITE',
+    SET_NOTIFICATION = 'SET_NOTIFICATION',
+    CHANGE_CARD_VIEW = 'CHANGE_CARD_VIEW',
 }
 
 export function langAction(data: {from: string, to: string}) {
@@ -25,17 +30,30 @@ export function langAction(data: {from: string, to: string}) {
     };
 }
 
-export function setDetailAction(data: number) {
+export function showModalDialog(data: IModalDialog) {
     return {
-        type: ActionTypes.SET_DETAIL,
+        type: ActionTypes.SHOW_MODAL_DIALOG,
         data,
     };
 }
 
-export function showDetailAction() {
+export function hideModalDialog() {
     return {
-        type: ActionTypes.DETAIL_IS_VISIBLE,
-        data: true,
+        type: ActionTypes.HIDE_MODAL_DIALOG,
+    };
+}
+
+export function setFavoriteAction(data: string) {
+    return {
+        type: ActionTypes.SET_FAVORITE,
+        data,
+    };
+}
+
+export function setNotificationAction(data: string) {
+    return {
+        type: ActionTypes.SET_NOTIFICATION,
+        data,
     };
 }
 
@@ -43,13 +61,6 @@ export function setAlphabetTypeAction(data: number) {
     return {
         type: ActionTypes.ALPHABET_TYPE,
         data,
-    };
-}
-
-export function hideDetailAction() {
-    return {
-        type: ActionTypes.DETAIL_IS_VISIBLE,
-        data: false,
     };
 }
 
@@ -74,6 +85,12 @@ export function searchTypeAction(data: string) {
     };
 }
 
+export function changeCardViewAction() {
+    return {
+        type: ActionTypes.CHANGE_CARD_VIEW,
+    };
+}
+
 export function flavorisationTypeAction(data: string) {
     return {
         type: ActionTypes.FLAVORISATION_TYPE,
@@ -95,6 +112,13 @@ export function isLoadingAction(data: boolean) {
     };
 }
 
+export function loadingProgressAction(data: number) {
+    return {
+        type: ActionTypes.LOADING_PROGRESS,
+        data,
+    };
+}
+
 export function setInterfaceLang(data: string) {
     return {
         type: ActionTypes.SET_INTERFACE_LANG,
@@ -105,6 +129,13 @@ export function setInterfaceLang(data: string) {
 export function changeIsvSearchLetters(data: string) {
     return {
         type: ActionTypes.CHANGE_ISV_SEARCH_LETTERS,
+        data,
+    };
+}
+
+export function changeIsvSearchByWordForms(data: boolean) {
+    return {
+        type: ActionTypes.CHANGE_ISV_SEARCH_BY_WORDFORMS,
         data,
     };
 }

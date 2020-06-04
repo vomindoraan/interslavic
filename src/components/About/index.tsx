@@ -8,50 +8,74 @@ export const About: React.FC =
         const email = 'cherebedov.sergey@gmail.com';
         const github = 'https://github.com/scherebedov/interslavic';
         const source = 'http://steen.free.fr/interslavic';
+        let version = `v${VERSION}`;
+        const trimmedBaseUrl = BASE_URL.replace('/', '');
+        if (trimmedBaseUrl !== '') {
+            version += `-${trimmedBaseUrl}`;
+        }
 
         return (
-            <div className={'about'}>
-                <div className={'aboutContent'}>
+            <div className={'about-page'}>
+                <div className={'about-page__container'}>
                     <h4>{t('aboutSmallTitle')}</h4>
-                    <div className={'common'}>
-                        {t('aboutUsingFrom')} <a target={'_blank'} href={source}>{source}</a>
-                        <p>{t('aboutAuthors')}</p>
-                        <hr/>
-                        <i>{t('nonCommercialDisclaimer')}</i>
+                    <div className={'about-page__common'}>
+                        <p>{t('aboutInterslavic')}</p>
+                        {t('aboutUsingFrom')} <a target={'_blank'} href={source}>{source}</a>.
                         <hr/>
                         <p>{t('aboutJoinText')}</p>
                         <a target={'_blank'} href={worksheetUrl}>{t('aboutTranslationsTable')}</a>
                         <hr/>
-                        <p>{t('aboutDeveloper')}</p>
-                        <a target={'_blank'} href={`email:${email}`}>{t('aboutDeveloperName')} ({email})</a>
+                        <i>{t('nonCommercialDisclaimer')}</i>
+                        <hr/>
+                        <h6>{t('aboutDeveloper')}</h6>
+                        <div className={'about-page__author'}>
+                            {t('aboutAuthorSergeyCherebedov')}:
+                            <a target={'_blank'} href={'https://github.com/scherebedov'}>GitHub</a>
+                            <a target={'_blank'} href={'https://www.linkedin.com/in/scherebedov/'}>LinkedIn</a>
+                            <a target={'_blank'} href={'https://www.facebook.com/profile.php?id=100009366550621'}>Facebook</a>
+                            <a target={'_blank'} href={`email:${email}`}>{email}</a>
+                        </div>
+                        <h6>{t('aboutDeveloperCoauthors')}</h6>
+                        <div className={'about-page__author'}>
+                            {t('aboutAuthorDenisShabalin')}:
+                            <a target={'_blank'} href={'https://github.com/ru-danko'}>GitHub</a>
+                            <a target={'_blank'} href={'https://www.facebook.com/d.y.shabalin'}>Facebook</a>
+                        </div>
+                        <div className={'about-page__author'}>
+                            {t('aboutAuthorJaroslavSerhieiev')}:
+                            <a target={'_blank'} href={'https://github.com/noomorph'}>GitHub</a>
+                            <a target={'_blank'} href={'email:noomorph@gmail.com'}>noomorph@gmail.com</a>
+                        </div>
+                        <h6>{t('aboutTranslators')}</h6>
+                        <div className={'about-page__author'}>
+                            {t('aboutTranslatorsText')}
+                        </div>
                         <hr/>
                         {t('aboutSourceCode')} <a target={'_blank'} href={github}>{github}</a>
                         <hr/>
-                        <p>{t('aboutOurFriends')}</p>
+                        <h6>{t('aboutOurFriends')}</h6>
                         <a
                             title={'Interslavic Facebook'}
                             href={'http://www.facebook.com/groups/interslavic'}
                             target={'_blank'}
                         >
-                            <img className={'partners shadow'} src={'partnersFacebook.png'} alt={'Interslavic Facebook Icon'}/>
+                            Facebook community
                         </a>
+                        <br/>
                         <a
                             title={'Interslavic Language Portal'}
                             href={'http://interslavic-language.org/'}
                             target={'_blank'}
                         >
-                            <img
-                                className={'partners shadow'}
-                                src={'partnersPortal.png'}
-                                alt={'Interslavic Language Portal Icon'}
-                            />
+                            interslavic-language.org
                         </a>
+                        <br/>
                         <a
                             title={'Interslavic journal'}
                             href={'http://slovjani.info/'}
                             target={'_blank'}
                         >
-                            <img className={'partners shadow'} src={'partnersJournal.jpg'} alt={'Interslavic journal Icon'}/>
+                            slovjani.info
                         </a>
                         <hr/>
                         <a
@@ -66,9 +90,7 @@ export const About: React.FC =
                             />
                         </a>
                     </div>
-                    <div className={'devInfo'}>
-                        <p className={'text-muted buildHash'}>{DATE}</p>
-                    </div>
+                    <div className={'about-page__release-date'}>{version}</div>
                 </div>
             </div>
         );

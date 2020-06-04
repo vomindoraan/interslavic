@@ -1,0 +1,37 @@
+name: Release
+on:
+  release:
+    types:
+      - published
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+
+      - name: NPM install
+        uses: bahmutov/npm-install@v1
+
+      - name: Build
+        run: |
+          npm run lint
+          npm run test
+          npm run generateDictionary
+          npm run build
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          cname: interslavic-dictionary.com
+          keep_files: true
+
+      - name: Purge cache on Cloudflare
+        uses: jakejarvis/cloudflare-purge-action@v0.3.0
+        env:
+          CLOUDFLARE_ZONE: ${{ secrets.CF_ZONE_ID }}
+          CLOUDFLARE_TOKEN: ${{ secrets.CF_AUTH_TOKEN }}

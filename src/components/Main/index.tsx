@@ -1,47 +1,29 @@
-import DetailModal from 'components/DetailModal';
-import GDPR from 'components/GDPR';
+import React from 'react';
+import { useDispatch } from 'react-redux';
+
+import { GDPR } from 'components/GDPR';
 import { Header } from 'components/Header';
 import { Loader } from 'components/Loader';
-import Router from 'components/Router';
-import { connect } from 'connect';
-import React from 'react';
-import { t } from 'translations';
+import { Notification } from 'components/Notification';
+import { ModalDialog } from 'components/ModalDialog';
+import { Router } from 'components/Router';
 
-import { fetchDictionary } from 'services';
+import { fetchDictionary } from 'services/fetchDictionary';
 import './index.scss';
 
-interface IMainProps {
-    isLoading: boolean;
-    loadDictionary: () => void;
-}
+export const Main: React.FC =
+    () => {
+        const dispatch = useDispatch();
+        React.useEffect(() => fetchDictionary(dispatch));
 
-class Main extends React.Component<IMainProps> {
-    constructor(props) {
-        super(props);
-        this.props.loadDictionary();
-    }
-
-    public render() {
         return (
             <>
-                <GDPR/>
-                <Loader title={t('loading')} isLoading={this.props.isLoading}/>
                 <Header/>
-                <DetailModal/>
                 <Router/>
+                <GDPR/>
+                <Loader/>
+                <ModalDialog/>
+                <Notification/>
             </>
         );
-    }
-}
-
-function mapStateToProps({ isLoading }) {
-    return { isLoading };
-}
-
-function mapDispatchToProps(dispatch) {
-    return {
-        loadDictionary: () => fetchDictionary(dispatch),
     };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Main);

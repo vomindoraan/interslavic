@@ -1,9 +1,6 @@
-import { dictionaryUrl } from 'consts';
-
 /* tslint:disable */
 const CACHE_NAME = 'interslavic-dictionary';
 const cacheUrls = [
-    // dictionaryUrl,
     'index.html',
     'data.txt',
     'manifest.json',
@@ -13,8 +10,7 @@ const cacheUrls = [
     `sw.${HASH_ID}.js`,
     `styles/grammarComponent~index.${HASH_ID}.css`,
     `styles/index.${HASH_ID}.css`,
-    `vendors~index.${HASH_ID}.js`,
-    `logo.png`,
+    // `vendors~index.${HASH_ID}.js`,
 ];
 
 self.addEventListener('install', (event: any) => {
@@ -55,9 +51,9 @@ self.addEventListener('fetch', (event: any) => {
                             return cachedResponse;
                         }
                         // Update cache.
-                        caches.open(CACHE_NAME).then((cache) => cache.put(event.request, response.clone()));
+                        caches.open(CACHE_NAME).then((cache) => cache.put(event.request, response));
                         // Return new data.
-                        return response;
+                        return response.clone();
                     }).catch(() => cachedResponse);
                 }
                 return cachedResponse;

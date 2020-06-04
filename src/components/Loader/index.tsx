@@ -1,18 +1,19 @@
 import * as React from 'react';
 import './index.scss';
 import classNames from 'classnames';
+import { t } from 'translations';
+import { useLoading } from 'hooks/useLoading';
 
-interface ILoaderProps {
-    title: string;
-    isLoading: boolean;
-}
+export const Loader =
+    () => {
+        const loading = useLoading();
 
-export const Loader: React.FC<ILoaderProps> =
-    ({isLoading, title}: ILoaderProps) => (
-        <div className={classNames('loaderContainer', {isLoading})}>
-            <div className={'text-primary customSpinner'} role={'status'}>
-                <span className={'sr-only'} />
+        return (
+            <div className={classNames('loader', {loading})}>
+                <div className={'loader__spinner'}>
+                    <span />
+                </div>
+                <span className={'loader__title'}>{t('loading')}</span>
             </div>
-            <h3 className={'text-muted'}>{title}</h3>
-        </div>
-    );
+        );
+    };

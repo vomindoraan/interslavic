@@ -2,7 +2,7 @@ import * as React from 'react';
 import './index.scss';
 
 function matchStr(str) {
-    return str.match(/\{[^{}]+\}+\[[\w,]+\]/g);
+    return str.match(/\{[^{}]*\}+\[[\w,]+\]/g);
 }
 
 export function parseStr(rawStr) {
@@ -37,7 +37,7 @@ export default class extends React.PureComponent<ITextProps> {
         return (
             <p
                 style={style}
-                className={'customText'}
+                className={'custom-text'}
                 dangerouslySetInnerHTML={{__html: parseStr(this.props.children)}}
             />
         );

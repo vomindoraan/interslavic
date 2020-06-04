@@ -1,128 +1,86 @@
 import { langAction } from 'actions';
 import * as React from 'react';
-import { connect } from 'react-redux';
-import { Selector } from '../Selector';
+import classNames from 'classnames';
+import { t } from 'translations';
+import { Selector } from 'components/Selector';
+import { langs } from 'consts';
 import './index.scss';
+import DirectionIcon from './images/direction-icon.svg';
+import { useDispatch } from 'react-redux';
+import { useLang } from 'hooks/useLang';
 
-interface ILangSelectorProps {
-    from: string;
-    to: string;
-    onSelect: (from: string, to: string) => void;
+interface ILangPart {
+    dir: string;
+    lang: string;
+    onSelect: (lang: string) => void;
 }
 
-const languageList = [
-    {
-        name: 'English',
-        value: 'en',
-    },
-    {
-        name: 'Русский',
-        value: 'ru',
-    },
-    {
-        name: 'Українська',
-        value: 'uk',
-    },
-    {
-        name: 'Беларуская',
-        value: 'be',
-    },
-    {
-        name: 'Polski',
-        value: 'pl',
-    },
-    {
-        name: 'Česky',
-        value: 'cs',
-    },
-    {
-        name: 'Slovenský',
-        value: 'sk',
-    },
-    {
-        name: 'Slovenščina',
-        value: 'sl',
-    },
-    {
-        name: 'Hrvatski',
-        value: 'hr',
-    },
-    {
-        name: 'Српски',
-        value: 'sr',
-    },
-    {
-        name: 'Македонски',
-        value: 'mk',
-    },
-    {
-        name: 'Български',
-        value: 'bg',
-    },
-    {
-        name: 'Deutsch',
-        value: 'de',
-    },
-];
-
-class LangSelector extends React.Component<ILangSelectorProps> {
-    public render() {
-        return (
-            <div className={'input-group langSelect'}>
-                {this.renderLangPart('from')}
-                <div className={'langItem changeDir'}>
-                    <button
-                        type={'button'}
-                        style={{textDecoration: 'none'}}
-                        aria-label={'Change translation direction'}
-                        className={'btn btn-link changeLang customFocusRing'}
-                        onClick={() => this.props.onSelect(this.props.to, this.props.from)}
-                    >
-                        ⇄
-                    </button>
-                </div>
-                {this.renderLangPart('to')}
-            </div>
-        );
-    }
-    private renderLangPart(dir: string) {
-        const langCode = this.props[dir];
-        if (langCode === 'isv') {
+const LangPart: React.FC<ILangPart> =
+    ({lang, dir, onSelect}: ILangPart) => {
+        if (lang === 'isv') {
             return (
-                <div className={'langItem isv'}>
-                    <label className={'langItem'}>Interslavic</label>
+                <div className={'lang-selector__isv'}>
+                    {t('isvLang')}
                 </div>
             );
         }
+
+        const options = ['en', ...langs].map((value) => ({
+            name: t(`${value}Lang`),
+            value,
+        }));
+
         return (
-            <div className={'langItem another'}>
-                <Selector
-                    options={languageList}
-                    value={langCode}
-                    onSelect={(langCode: string) => {
-                        if (dir === 'from') {
-                            this.props.onSelect(langCode, this.props.to);
-                        }
-                        if (dir === 'to') {
-                            this.props.onSelect(this.props.from, langCode);
-                        }
-                    }}
+            <Selector
+                className={'lang-selector__another'}
+                options={options}
+                value={lang}
+                onSelect={(value: string) => {
+                    if (dir === 'from') {
+                        onSelect(value);
+                    }
+                    if (dir === 'to') {
+                        onSelect(value);
+                    }
+                }}
+            />
+        );
+    };
+
+export const LangSelector: React.FC =
+    () => {
+        const {from, to} = useLang();
+        const dispatch = useDispatch();
+
+        return (
+            <div className={'lang-selector'}>
+                <LangPart
+                    dir={'from'}
+                    lang={from}
+                    onSelect={(value) => dispatch(langAction({
+                        from: value,
+                        to,
+                    }))}
+                />
+                <button
+                    type={'button'}
+                    aria-label={'Change translation direction'}
+                    className={classNames('lang-selector__change-dir-button', {rotate: from === 'isv'})}
+                    onClick={() => dispatch(langAction({
+                        from: to,
+                        to: from,
+                    }))}
+                >
+                    <DirectionIcon />
+                </button>
+                <LangPart
+                    dir={'to'}
+                    lang={to}
+                    onSelect={(value) => dispatch(langAction({
+                        from,
+                        to: value,
+                    }))}
                 />
             </div>
         );
-    }
-}
-
-function mapStateToProps({lang}) {
-    return { ...lang };
-}
-
-function mapDispatchToProps(dispatch) {
-    return {
-        onSelect: (from, to) => {
-            dispatch(langAction({from, to}));
-        },
     };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(LangSelector);

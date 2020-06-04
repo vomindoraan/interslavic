@@ -1,63 +1,53 @@
 import { flavorisationTypeAction } from 'actions';
 import { Selector } from 'components/Selector';
-import { connect } from 'connect';
 import * as React from 'react';
 import { t } from 'translations';
 import './index.scss';
-
-interface IFlavorisationSelectorProps {
-    flavorisationType: string;
-    changeFlavorisationType: (flavorisationType: string) => void;
-}
+import { useDispatch } from 'react-redux';
+import { useFlavorisationType } from 'hooks/useFlavorisationType';
 
 const flavorisationTypes = [
     {
-        name: 'Etimologičny pravopis',
+        name: 'flavEtymological',
         value: '2',
     },
     {
-        name: 'Medžuslovjansky',
+        name: 'flavStandard',
         value: '3',
     },
     {
-        name: 'Slovianto',
+        name: 'flavSlovianto',
         value: '4',
     },
     {
-        name: 'Sěverny variant',
+        name: 'flavNorthern',
         value: 'S',
     },
     {
-        name: 'Južny variant',
+        name: 'flavSouthern',
         value: 'J',
     },
 ];
 
-class FlavorisationSelector extends React.Component<IFlavorisationSelectorProps> {
-    public render() {
+export const FlavorisationSelector: React.FC =
+    () => {
+        const dispatch = useDispatch();
+        const flavorisationType = useFlavorisationType();
+        const options = flavorisationTypes.map(({name, value}) => ({
+            name: t(name),
+            value,
+        }));
+        const onSelect = React.useCallback((type) => {
+            dispatch(flavorisationTypeAction(type));
+        }, [dispatch]);
+
         return (
-            <div className={'flavorisationSelector'}>
-                <Selector
-                    options={flavorisationTypes}
-                    onSelect={(flavorisationType) => this.props.changeFlavorisationType(flavorisationType)}
-                    value={this.props.flavorisationType}
-                    label={t('flavorisation')}
-                />
-            </div>
+            <Selector
+                className={'flavorisation-selector'}
+                options={options}
+                onSelect={onSelect}
+                value={flavorisationType}
+                label={t('flavorisation')}
+            />
         );
-    }
-}
-
-function mapStateToProps({flavorisationType}) {
-    return {
-        flavorisationType,
     };
-}
-
-function mapDispatchToProps(dispatch) {
-    return {
-        changeFlavorisationType: (flavorisationType) => dispatch(flavorisationTypeAction(flavorisationType)),
-    };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(FlavorisationSelector);
