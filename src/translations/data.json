@@ -345,7 +345,7 @@
     "bg": "Молим Ви, включете се и помогнете да подобрим преводите на Вашия роден език!"
   },
   "aboutDeveloper": {
-    "en": "Author and main developer of the project:",
+    "en": "Author and main project developer:",
     "isv": "Avtor i glavny izrabotnik projekta:",
     "ru": "Автор и основной разработчик проекта:",
     "uk": "Автор та головний розробник проекту:",
@@ -353,9 +353,9 @@
     "pl": "Autor i główny deweloper projektu:",
     "cs": "Autor a hlavní developer projektu:",
     "sk": "Autor a hlavný developer projektu:",
-    "sl": "Avtor in glavni developer projekta:",
-    "hr": "Autor i glavni programer projekta:",
-    "sr": "Аутор и главни програмер пројекта:",
+    "sl": "Avtor in glavni razvijalec projekta:",
+    "hr": "Autor i glavni developer projekta:",
+    "sr": "Аутор и главни развојник пројекта:",
     "mk": "Автор и главен развивач на проектот:",
     "bg": "Автор и главен разработчик на проекта:"
   },
