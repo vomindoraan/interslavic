@@ -706,18 +706,18 @@
   },
   "anyPartOfSpeech": {
     "en": "any",
-    "isv": "vsaka",
-    "ru":  "любая",
-    "uk": "",
+    "isv": "vse",
+    "ru": "любая",
+    "uk": "всі",
     "be": "",
     "pl": "",
     "cs": "",
-    "sk": "",
-    "sl": "",
-    "hr": "",
-    "sr": "",
-    "mk": "",
-    "bg": "всяка"
+    "sk": "akýkoľvek",
+    "sl": "vse",
+    "hr": "sve",
+    "sr": "све",
+    "mk": "сите",
+    "bg": "всички"
   },
   "case": {
     "en": "case",
@@ -962,7 +962,7 @@
   "numeral-cardinal": {
     "en": "cardinal",
     "isv": "kolikostny",
-    "ru":  "количественное",
+    "ru": "количественное",
     "uk": "",
     "be": "",
     "pl": "",
@@ -977,7 +977,7 @@
   "numeral-collective": {
     "en": "collective",
     "isv": "sborny",
-    "ru":  "собирательное",
+    "ru": "собирательное",
     "uk": "",
     "be": "",
     "pl": "",
@@ -992,7 +992,7 @@
   "numeral-fractional": {
     "en": "fractional",
     "isv": "ulomkovy",
-    "ru":  "дробное",
+    "ru": "дробное",
     "uk": "",
     "be": "",
     "pl": "",
@@ -1007,7 +1007,7 @@
   "numeral-substantivized": {
     "en": "substantivized",
     "isv": "substantovany",
-    "ru":  "субстантивированное",
+    "ru": "субстантивированное",
     "uk": "",
     "be": "",
     "pl": "",
@@ -1022,7 +1022,7 @@
   "numeral-differential": {
     "en": "differential",
     "isv": "različajuči",
-    "ru":  "видовое",
+    "ru": "видовое",
     "uk": "",
     "be": "",
     "pl": "",
@@ -1037,7 +1037,7 @@
   "numeral-multiplicative": {
     "en": "multiplicative",
     "isv": "množiteljny",
-    "ru":  "многократное",
+    "ru": "многократное",
     "uk": "",
     "be": "",
     "pl": "",
@@ -1052,7 +1052,7 @@
   "numeral-ordinal": {
     "en": "ordinal",
     "isv": "poredkovy",
-    "ru":  "порядковое",
+    "ru": "порядковое",
     "uk": "",
     "be": "",
     "pl": "",
@@ -1067,7 +1067,7 @@
   "pronoun-personal": {
     "en": "personal",
     "isv": "osobny",
-    "ru":  "личное",
+    "ru": "личное",
     "uk": "",
     "be": "",
     "pl": "",
@@ -1082,7 +1082,7 @@
   "pronoun-demonstrative": {
     "en": "demonstrative",
     "isv": "ukazateljny",
-    "ru":  "указательное",
+    "ru": "указательное",
     "uk": "",
     "be": "",
     "pl": "",
@@ -1097,7 +1097,7 @@
   "pronoun-indefinite": {
     "en": "indefinite",
     "isv": "neoznačiteljny",
-    "ru":  "неопределённое",
+    "ru": "неопределённое",
     "uk": "",
     "be": "",
     "pl": "",
@@ -1112,7 +1112,7 @@
   "pronoun-reflexive": {
     "en": "reflexive",
     "isv": "refleksivny",
-    "ru":  "возвратное",
+    "ru": "возвратное",
     "uk": "",
     "be": "",
     "pl": "",
@@ -1127,7 +1127,7 @@
   "pronoun-relative": {
     "en": "relative",
     "isv": "relativny",
-    "ru":  "относительное",
+    "ru": "относительное",
     "uk": "",
     "be": "",
     "pl": "",
@@ -1142,7 +1142,7 @@
   "pronoun-possessive": {
     "en": "possessive",
     "isv": "prisvojiteljny",
-    "ru":  "притяжательное",
+    "ru": "притяжательное",
     "uk": "",
     "be": "",
     "pl": "",
@@ -1157,7 +1157,7 @@
   "pronoun-interrogative": {
     "en": "interrogative",
     "isv": "pytateljny",
-    "ru":  "вопросительное",
+    "ru": "вопросительное",
     "uk": "",
     "be": "",
     "pl": "",
@@ -1172,7 +1172,7 @@
   "verb-imperfective": {
     "en": "imperfective",
     "isv": "nesovršeny",
-    "ru":  "несовершенный",
+    "ru": "несовершенный",
     "uk": "",
     "be": "",
     "pl": "",
@@ -1187,7 +1187,7 @@
   "verb-perfective": {
     "en": "perfective",
     "isv": "sovršeny",
-    "ru":  "совершенный",
+    "ru": "совершенный",
     "uk": "",
     "be": "",
     "pl": "",
@@ -1202,7 +1202,7 @@
   "verb-imperfectiveOrPerfective": {
     "en": "imperfective / perfective",
     "isv": "nesovršeny / sovršeny",
-    "ru":  "несовершенный / совершенный",
+    "ru": "несовершенный / совершенный",
     "uk": "",
     "be": "",
     "pl": "",
@@ -1217,7 +1217,7 @@
   "verb-intransitive": {
   "en": "intransitive",
   "isv": "neprěhodny",
-  "ru":  "непереходный",
+  "ru": "непереходный",
   "uk": "",
   "be": "",
   "pl": "",
@@ -1226,13 +1226,13 @@
   "sl": "",
   "hr": "",
   "sr": "",
-  "mk": "",
+  "mk": "непреоден",
   "bg": "непреходен"
 },
   "verb-transitive": {
     "en": "transitive",
     "isv": "prěhodny",
-    "ru":  "переходный",
+    "ru": "переходный",
     "uk": "",
     "be": "",
     "pl": "",
@@ -1241,13 +1241,13 @@
     "sl": "",
     "hr": "",
     "sr": "",
-    "mk": "",
+    "mk": "преоден",
     "bg": "преходен"
   },
   "verb-reflexive": {
     "en": "reflexive",
     "isv": "svratny",
-    "ru":  "возвратный",
+    "ru": "возвратный",
     "uk": "",
     "be": "",
     "pl": "",
@@ -1262,7 +1262,7 @@
   "verb-auxiliar": {
     "en": "auxiliar",
     "isv": "pomočny",
-    "ru":  "вспомогательный",
+    "ru": "вспомогательный",
     "uk": "",
     "be": "",
     "pl": "",
@@ -1277,7 +1277,7 @@
   "caseNom": {
     "en": "Nom.",
     "isv": "Imen.",
-    "ru":  "Имен.",
+    "ru": "Имен.",
     "uk": "",
     "be": "",
     "pl": "",
@@ -1292,7 +1292,7 @@
   "caseAcc": {
     "en": "Acc.",
     "isv": "Vin.",
-    "ru":  "Вин.",
+    "ru": "Вин.",
     "uk": "",
     "be": "",
     "pl": "",
@@ -1307,7 +1307,7 @@
   "caseGen": {
     "en": "Gen.",
     "isv": "Rod.",
-    "ru":  "Род.",
+    "ru": "Род.",
     "uk": "",
     "be": "",
     "pl": "",
@@ -1322,7 +1322,7 @@
   "caseLoc": {
     "en": "Loc.",
     "isv": "Měst.",
-    "ru":  "Мест.",
+    "ru": "Мест.",
     "uk": "",
     "be": "",
     "pl": "",
@@ -1337,7 +1337,7 @@
   "caseDat": {
     "en": "Dat.",
     "isv": "Dat.",
-    "ru":  "Дат.",
+    "ru": "Дат.",
     "uk": "",
     "be": "",
     "pl": "",
@@ -1352,7 +1352,7 @@
   "caseIns": {
     "en": "Ins.",
     "isv": "Tvor.",
-    "ru":  "Твор.",
+    "ru": "Твор.",
     "uk": "",
     "be": "",
     "pl": "",
@@ -1367,7 +1367,7 @@
   "caseVoc": {
     "en": "Voc.",
     "isv": "Zvat.",
-    "ru":  "Зват.",
+    "ru": "Зват.",
     "uk": "",
     "be": "",
     "pl": "",
@@ -1382,7 +1382,7 @@
   "degreesOfComparison": {
     "en": "Degrees of comparison",
     "isv": "Stupnje sravnjenja",
-    "ru":  "Степени сравнения",
+    "ru": "Степени сравнения",
     "uk": "",
     "be": "",
     "pl": "",
@@ -1397,7 +1397,7 @@
   "positive": {
     "en": "positive",
     "isv": "pozitivna",
-    "ru":  "положительная",
+    "ru": "положительная",
     "uk": "",
     "be": "",
     "pl": "",
@@ -1412,7 +1412,7 @@
   "comparative": {
     "en": "comparative",
     "isv": "sravniteljna",
-    "ru":  "сравнительная",
+    "ru": "сравнительная",
     "uk": "",
     "be": "",
     "pl": "",
@@ -1427,7 +1427,7 @@
   "superlative": {
     "en": "superlative",
     "isv": "superlativna",
-    "ru":  "превосходная",
+    "ru": "превосходная",
     "uk": "",
     "be": "",
     "pl": "",
@@ -1442,7 +1442,7 @@
   "present": {
     "en": "present",
     "isv": "nastoječe",
-    "ru":  "настоящее",
+    "ru": "настоящее",
     "uk": "",
     "be": "",
     "pl": "",
@@ -1457,7 +1457,7 @@
   "imperfect": {
     "en": "imperfect",
     "isv": "imperfekt",
-    "ru":  "несов. прошед.",
+    "ru": "несов. прошед.",
     "uk": "",
     "be": "",
     "pl": "",
@@ -1472,7 +1472,7 @@
   "future": {
     "en": "future",
     "isv": "buduče",
-    "ru":  "будущее",
+    "ru": "будущее",
     "uk": "",
     "be": "",
     "pl": "",
@@ -1487,7 +1487,7 @@
   "perfect": {
     "en": "perfect",
     "isv": "perfekt",
-    "ru":  "соверш. прошед.",
+    "ru": "соверш. прошед.",
     "uk": "",
     "be": "",
     "pl": "",
@@ -1502,7 +1502,7 @@
   "pluperfect": {
     "en": "pluperfect",
     "isv": "pluskvamperfekt",
-    "ru":  "предпрошед.",
+    "ru": "предпрошед.",
     "uk": "",
     "be": "",
     "pl": "",
@@ -1517,7 +1517,7 @@
   "conditional": {
     "en": "conditional",
     "isv": "kondicional",
-    "ru":  "сослаг. накл.",
+    "ru": "сослаг. накл.",
     "uk": "",
     "be": "",
     "pl": "",
@@ -1532,7 +1532,7 @@
   "infinitive": {
     "en": "infinitive",
     "isv": "infinitiv",
-    "ru":  "неопределённая форма",
+    "ru": "неопределённая форма",
     "uk": "",
     "be": "",
     "pl": "",
@@ -1547,7 +1547,7 @@
   "imperative": {
     "en": "imperative",
     "isv": "poveliteljno naklonenje",
-    "ru":  "повелительное накл.",
+    "ru": "повелительное накл.",
     "uk": "",
     "be": "",
     "pl": "",
@@ -1562,7 +1562,7 @@
   "presentActiveParticiple": {
     "en": "present active participle",
     "isv": "nast. aktiv. pričestje",
-    "ru":  "действ. прич. наст. вр.",
+    "ru": "действ. прич. наст. вр.",
     "uk": "",
     "be": "",
     "pl": "",
@@ -1577,7 +1577,7 @@
   "presentPassiveParticiple": {
     "en": "present passive participle",
     "isv": "nast. passiv. pričestje",
-    "ru":  "страд. причаст. наст. вр.",
+    "ru": "страд. причаст. наст. вр.",
     "uk": "",
     "be": "",
     "pl": "",
@@ -1592,7 +1592,7 @@
   "pastActiveParticiple": {
     "en": "past active participle",
     "isv": "prošlo aktiv. pričestje",
-    "ru":  "действ. причаст. прошед. вр.",
+    "ru": "действ. причаст. прошед. вр.",
     "uk": "",
     "be": "",
     "pl": "",
@@ -1607,7 +1607,7 @@
   "pastPassiveParticiple": {
     "en": "past passive participle",
     "isv": "prošlo passiv. pričestje",
-    "ru":  "страд. причаст. прошед. вр.",
+    "ru": "страд. причаст. прошед. вр.",
     "uk": "",
     "be": "",
     "pl": "",
@@ -1622,7 +1622,7 @@
   "verbalNoun": {
     "en": "verbal noun",
     "isv": "glagolno ime",
-    "ru":  "отглагольное существ.",
+    "ru": "отглагольное существ.",
     "uk": "",
     "be": "",
     "pl": "",
@@ -1637,7 +1637,7 @@
   "1sg": {
     "en": "1sg",
     "isv": "1jed",
-    "ru":  "1ед",
+    "ru": "1ед",
     "uk": "",
     "be": "",
     "pl": "",
@@ -1652,7 +1652,7 @@
   "2sg": {
     "en": "2sg",
     "isv": "2jed",
-    "ru":  "2ед",
+    "ru": "2ед",
     "uk": "",
     "be": "",
     "pl": "",
@@ -1667,7 +1667,7 @@
   "3sg": {
     "en": "3sg",
     "isv": "3jed",
-    "ru":  "3ед",
+    "ru": "3ед",
     "uk": "",
     "be": "",
     "pl": "",
@@ -1682,7 +1682,7 @@
   "1pl": {
     "en": "1pl",
     "isv": "1mn",
-    "ru":  "1мн",
+    "ru": "1мн",
     "uk": "",
     "be": "",
     "pl": "",
@@ -1697,7 +1697,7 @@
   "2pl": {
     "en": "2pl",
     "isv": "2mn",
-    "ru":  "2мн",
+    "ru": "2мн",
     "uk": "",
     "be": "",
     "pl": "",
@@ -1712,7 +1712,7 @@
   "3pl": {
     "en": "3pl",
     "isv": "3mn",
-    "ru":  "3мн",
+    "ru": "3мн",
     "uk": "",
     "be": "",
     "pl": "",
@@ -1727,7 +1727,7 @@
   "wordForm": {
     "en": "word form",
     "isv": "forma slova",
-    "ru":  "форма слова",
+    "ru": "форма слова",
     "uk": "",
     "be": "",
     "pl": "",
@@ -1740,9 +1740,9 @@
     "bg": "словоформа"
   },
   "showSlavicWordsInAlphabets": {
-    "en": "Show interslavic words using selected alphabets",
+    "en": "Show Interslavic words using selected alphabets",
     "isv": "Pokazyvati medžuslovjaske slova na izbranyh alfabetah",
-    "ru":  "Отображать межславянские слова на выбранных алфавитах",
+    "ru": "Отображать межславянские слова на выбранных алфавитах",
     "uk": "Показувати міжслов'янські слова на обраних алфавітах",
     "be": "Паказваць міжславянскія словы на абраных алфавітах",
     "pl": "Pokaż medzysłowiańskie słowa w wybranych alfabetach",
