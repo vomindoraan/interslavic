@@ -12,7 +12,7 @@ const searchTypes = [
         value: 'begin',
     },
     {
-        name: 'searchTypeEntire',
+        name: 'searchTypeWhole',
         value: 'full',
     },
     // {
